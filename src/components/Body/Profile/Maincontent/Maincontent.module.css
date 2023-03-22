@@ -1,0 +1,15 @@
+
+.content {
+          grid-area: c;
+          background-color: blanchedalmond;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+}
+
+.content img {
+          height: 100px;
+          display: block;
+          align-self: center;
+}

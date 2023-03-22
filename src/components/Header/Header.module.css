@@ -1,0 +1,17 @@
+
+.header {
+          grid-area: h;
+          background-color: aqua;
+          display: flex;
+          align-items: center;
+          padding: 10px;
+}
+.logo {
+          width: 45px;
+          height: 45px;
+          background-color: blue;
+          border-radius: 50%;
+          text-align: center;
+          margin-right: 20px;
+          font-size: 14px;
+}

@@ -1,0 +1,31 @@
+
+.newpost {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 10px;
+}
+
+.newpost textarea {
+          width: 100%;
+          border: 1px solid black;
+          border-radius: 10px;
+}
+
+textarea:focus {
+          box-shadow: 5px 2px 2px red;
+}
+
+.newpost button {
+          font-size: 30px;
+          border-radius: 10px;
+          transition: all 0.3s ease;
+          padding: 10px 30px;
+
+}
+
+.newpost button:hover {
+          cursor: pointer;
+          transform: scale(1.2);
+}
