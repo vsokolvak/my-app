@@ -2,6 +2,7 @@ import classes from './Messages.module.css'
 import React from 'react';
 import User from './User/User';
 import Message from './Message/Message';
+import { NavLink } from 'react-router-dom';
 
 const Messages = () => {
   return (

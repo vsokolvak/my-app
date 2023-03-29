@@ -2,7 +2,7 @@ import classes from './Body.module.css'
 import React from 'react';
 import Profile from './Profile/Profile';
 import Messages from './Messages/Messages';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import News from './News/News';
 import Music from './Music/Music';
 import Setting from './Setting/Setting';
@@ -10,17 +10,17 @@ import Setting from './Setting/Setting';
 const Body = () => {
   return (
     <main>
-        <Routes>
-          <Route path="/profile" element={<Profile />}></Route>
+      <Routes>
+        <Route path="/profile/*" element={<Profile />} />
 
-          <Route path="/messages" element={<Messages />}></Route>
+        <Route path="/messages/*" element={<Messages />} />
 
-          <Route path="/News" element={<News />}></Route>
+        <Route path="/News/*" element={<News />} />
 
-          <Route path="/Music" element={<Music />}></Route>
+        <Route path="/Music/*" element={<Music />} />
 
-          <Route path="/Setting" element={<Setting />}></Route>
-        </Routes>
+        <Route path="/Setting/*" element={<Setting />} />
+      </Routes>
     </main>
   );
 }
