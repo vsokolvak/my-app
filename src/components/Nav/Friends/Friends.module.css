@@ -1,0 +1,11 @@
+.friend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+}
+
+.friend img {
+  height: 50px;
+}

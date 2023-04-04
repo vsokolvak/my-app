@@ -4,15 +4,15 @@ import Body from './components/Body/Body';
 import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app-wraper">
       
       <Header />
 
-      <Nav />
+      <Nav users={props.state.messages.users} />
 
-      <Body />
+      <Body state={props.state} bll={props.bll} />
 
     </div>
   );

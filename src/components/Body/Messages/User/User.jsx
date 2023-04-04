@@ -4,12 +4,11 @@ import { NavLink } from "react-router-dom";
 
 const User = (props) => {
 
-  let userCount = props.user || 1
-
   return (
       <div className={classes.user}>
         <p> 
-          <NavLink to='user1'> user 1 </NavLink>
+          <img src={props.avatar} alt="avatar" />
+          <NavLink to={'user' + props.id}> {props.name} </NavLink>
         </p>
       </div>
   );

@@ -1,17 +1,17 @@
 import classes from './Profile.module.css'
 import React from 'react';
-import Posts from './MyPosts/Posts';
 import NewPost from './NewPost/NewPost';
 import Maincontent from './Maincontent/Maincontent';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+import MyPosts from './MyPosts/MyPosts';
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <main>
       <Maincontent />
-      <div>ava + description</div>
-      <div>My post</div>
-      <NewPost />
-      <Posts />
+      <ProfileInfo />
+      <NewPost bll={props.bll} inputMessage={props.state.inputMessage} />
+      <MyPosts posts={props.state.posts} />
     </main>
   );
 }

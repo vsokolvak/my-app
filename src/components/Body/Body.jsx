@@ -7,13 +7,24 @@ import News from './News/News';
 import Music from './Music/Music';
 import Setting from './Setting/Setting';
 
-const Body = () => {
+const Body = (props) => {
   return (
     <main>
       <Routes>
-        <Route path="/profile/*" element={<Profile />} />
+        <Route
+          path="/*"
+          element={
+            <Profile
+              state={props.state}
+              bll={props.bll}
+            />
+          }
+        />
 
-        <Route path="/messages/*" element={<Messages />} />
+        <Route
+          path="/messages/*"
+          element={<Messages messages={props.state.messages} />}
+        />
 
         <Route path="/News/*" element={<News />} />
 

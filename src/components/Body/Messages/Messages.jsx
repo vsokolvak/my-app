@@ -1,30 +1,36 @@
-import classes from './Messages.module.css'
-import React from 'react';
-import User from './User/User';
-import Message from './Message/Message';
-import { NavLink } from 'react-router-dom';
+import classes from "./Messages.module.css";
+import React from "react";
+import User from "./User/User";
+import Message from "./Message/Message";
+import NewMessage from "./NewMessage/NewMessage";
 
-const Messages = () => {
+const Messages = (props) => {
+
+  const usersitems = props.messages.users.map((el) => {
+    return <User name={el.name} id={el.id} avatar={el.avatar} />;
+  });
+
+  const messageitems = props.messages.message.map((el) => {
+    return <Message textMessage={el.textMessage} likesCount={el.likesCount} />;
+  });
+
   return (
     <div className={classes.box}>
       <div className={classes.users}>
         <p> users </p>
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
+
+        {usersitems}
       </div>
       <div div className={classes.messages}>
         <p> messages </p>
-        <Message />
-        <Message />
-        <Message />
-        <Message />
-        <Message />
+
+        {messageitems}
+
+        <NewMessage />
+
       </div>
     </div>
   );
-}
+};
 
 export default Messages;

@@ -1,8 +1,13 @@
 import classes from "./Nav.module.css";
 import React from "react";
-import { BrowserRouter, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Friends from "./Friends/Friends";
 
-const Nav = () => {
+const Nav = (props) => {
+  const users = props.users.map((user) => {
+    return <Friends avatar={user.avatar} name={user.name} id={user.id} />;
+  });
+
   return (
     <nav className={classes.nav}>
       <div className={classes.menu}>
@@ -11,6 +16,11 @@ const Nav = () => {
         <NavLink to="/news">news</NavLink>
         <NavLink to="/music">music</NavLink>
         <NavLink to="/setting">setting</NavLink>
+      </div>
+
+      <div className={classes.friends}>
+        <p>friends</p>
+        <div className={classes.friendsitem}>{users}</div>
       </div>
     </nav>
   );

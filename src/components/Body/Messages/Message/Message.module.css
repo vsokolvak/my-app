@@ -1,0 +1,13 @@
+.message {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.message p {
+  font-size: 30px;
+  background-color: azure;
+  color: black;
+  padding: 5px;
+  border-radius: 25px;
+  width: fit-content;
+}
