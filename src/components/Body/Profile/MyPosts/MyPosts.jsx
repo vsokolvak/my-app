@@ -3,7 +3,7 @@ import React from "react";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  const postsItems = props.posts.map((post) => {
+  const postsItems = props.post.map((post) => {
     return <Post txtMessage={post.txtMessage} likeCount={post.likeCount} />;
   });
   return (

@@ -12,7 +12,7 @@ const App = (props) => {
 
       <Nav users={props.state.messages.users} />
 
-      <Body state={props.state} bll={props.bll} />
+      <Body state={props.state} dispatch={props.dispatch} />
 
     </div>
   );

@@ -1,7 +1,7 @@
 import classes from './Body.module.css'
 import React from 'react';
 import Profile from './Profile/Profile';
-import Messages from './Messages/Messages';
+import MessagesConteiner from './Messages/MessagesConteiner';
 import { Route, Routes } from 'react-router-dom';
 import News from './News/News';
 import Music from './Music/Music';
@@ -11,19 +11,11 @@ const Body = (props) => {
   return (
     <main>
       <Routes>
-        <Route
-          path="/*"
-          element={
-            <Profile
-              state={props.state}
-              bll={props.bll}
-            />
-          }
-        />
+        <Route path="/*" element={<Profile />}/>
 
         <Route
           path="/messages/*"
-          element={<Messages messages={props.state.messages} />}
+          element={<MessagesConteiner />}
         />
 
         <Route path="/News/*" element={<News />} />

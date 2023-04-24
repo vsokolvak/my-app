@@ -4,42 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import state from './redux/state';
+import store from './redux/reduxStore';
+import { Provider } from 'react-redux';
 
-console.log(state)
-
-const bll = {
-  updatePosts: (userTxt = ' ', userLike = '0', data = state) => {
-    const newMessage = {
-      txtMessage: userTxt,
-      likeCount: userLike || 0
-    }
-
-    data.posts.push(newMessage)
-    updatePage(state, bll)
-  },
-
-  updateInputMessage: (userTXT, data = state) => {
-    state.inputMessage = userTXT
-    updatePage(state, bll)
-  }
-}
+console.log(store)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function updatePage(state, bll) {
-  root.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <App state={state} bll={bll} />
-      </BrowserRouter>
-    </React.StrictMode>
-  );
-}
-
-updatePage(state, bll)
-
-
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App state={store.getState()} dispatch={store.dispatch} />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
