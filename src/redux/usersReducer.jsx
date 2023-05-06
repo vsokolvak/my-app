@@ -7,6 +7,7 @@ const initialState = {
 		activePage: 1,
 		pageCount: 1,
 		maxDisplayedPageCount: 3,
+		loaded: true,
 	},
 
 	pageNumberList: [],
@@ -37,8 +38,11 @@ const usersReducer = (data = initialState, action) => {
 	else if (action.type === 'SET_PAGE_NUMBER_LIST') {
 		return { ...data, pageNumberList: [...action.pageNumberList] }
 	}
+	else if (action.type === 'AXIOS_GET_LOADED') {
+		return { ...data, axiosParams: { ...data.axiosParams, loaded: action.loaded } }
+	}
 	// 
-	return data
+	return stateCopy
 }
 // експорт за замовчуванням
 export default usersReducer

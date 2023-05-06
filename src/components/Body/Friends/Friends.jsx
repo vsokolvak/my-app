@@ -10,10 +10,11 @@ class Friends extends React.Component {
 	}
 
 	getUsers(pageCount) {
+		this.props.axiosGetLoaded(true)
 		axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${pageCount}`).then(response => {
 			this.props.setUserState(response.data.items, response.data.totalCount, pageCount)
 			this.setPageNumberList(pageCount)
-			console.log(`response # ${pageCount}, activepage ${this.props.activePage}`)
+			this.props.axiosGetLoaded(false)
 		})
 	}
 	setPageNumberList(pageCount) {
@@ -46,10 +47,27 @@ class Friends extends React.Component {
 		let endStyleNone = {}
 		if (this.props.activePage >= this.props.pageCount - 1) endStyleNone.display = 'none'
 
+		let loader = []
+		for (let i = 0; i < 10; i++) {
+			loader[i] = <div 
+				key={i} 
+				className={classes.loaderItems}
+				style={{ transform: `rotate(${360 / 10 * i }deg)`}} 
+			>
+			</div>
+		}
+
 		return (
 			<div>
 				<div className={classes.pageCount}>
 					<div> Friends </div>
+				</div>
+
+				{this.props.loaded 
+				? <div className={classes.loaded}>
+						{loader}
+				</div> 
+				: <div className={classes.userlist}>
 					<div>
 						<span
 							className={classes.pageNumber}
@@ -63,11 +81,8 @@ class Friends extends React.Component {
 							onClick={() => { this.getUsers(this.props.pageCount) }} >
 							... {this.props.pageCount}</span>
 					</div>
-				</div>
-
-				<div className={classes.userlist}>
 					{userList}
-				</div>
+				</div>}
 			</div>
 		);
 	}

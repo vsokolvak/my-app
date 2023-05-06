@@ -1,6 +1,8 @@
 .userlist {
     display: flex;
     flex-direction: column;
+		align-items: center;
+		justify-content: center;
     gap: 10px;
     margin: 10px;
 }
@@ -33,3 +35,63 @@
 	background-color: azure;
 	color: black;
 }
+
+@keyframes moveLoaded {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(180deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+.loaded {
+	animation: moveLoaded infinite 4s linear;
+	margin: auto;
+	position: relative;
+	width: 80px;
+	height: 80px;
+	background-color: aliceblue;
+	border-radius: 50%;
+	margin-top: 50px;
+}
+@keyframes move {
+	0% {
+		transform: translateY(-20px);
+	}
+	50% {
+		transform: translateY(-35px);
+	}
+	100% {
+		transform: translateY(-20px);
+	}
+}
+
+.loaderItems {
+	width: 10px;
+	height: 10px;
+	background:aliceblue;
+	border-radius: 50%;
+	position: absolute;
+	left: calc(50% - 5px);
+	top: calc(50% - 5px);
+	transform: translateY(-50%) translateX(-50%);
+}
+
+.loaderItems::before {
+	content: '';
+	display: block;
+	animation: move infinite 4s ease-out;
+	width: 10px;
+	height: 10px;
+	background: aqua;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+

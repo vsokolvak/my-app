@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 	pageCount: state.users.axiosParams.pageCount,
 	activePage: state.users.axiosParams.activePage,
 	usersCount: state.users.axiosParams.usersCount,
-	maxDisplayedPageCount: state.users.axiosParams.maxDisplayedPageCount
+	maxDisplayedPageCount: state.users.axiosParams.maxDisplayedPageCount,
+	loaded: state.users.axiosParams.loaded
  })
 
 const mapDispatchToProps = dispatch => {
@@ -32,6 +33,12 @@ const mapDispatchToProps = dispatch => {
 			dispatch({
 				type: 'SET_PAGE_NUMBER_LIST',
 				pageNumberList: pageNumberList,
+			})
+		},
+		axiosGetLoaded(loaded) {
+			dispatch({
+				type: 'AXIOS_GET_LOADED',
+				loaded: loaded,
 			})
 		}
 	})
