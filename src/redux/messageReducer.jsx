@@ -58,7 +58,7 @@ const messageReducer = (data = initialState, action) => {
         // добавляю новий елемент в копію стейту
         stateCopy.message.push(newTxtMessage)
         // очищую поле вводу
-        stateCopy.message.inputMessage = ''
+        stateCopy.inputMessage = ''
     }
     // повертаю копію стейту, щоб реакт редакс порівняв її з оригіналом, і переписав компоненти, які зазнали змін
     return stateCopy

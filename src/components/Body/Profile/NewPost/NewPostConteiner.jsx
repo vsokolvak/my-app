@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
       // діспатчить екш н в стейт
       dispatch({
         // тип екшену
-        type: 'UPDATE-INPUT-TEXT',
+        type: 'POSTS-UPDATE-INPUT-TEXT',
         // текст, який передається із тектового поля
         userTXT: text
       })

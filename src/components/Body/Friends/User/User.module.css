@@ -1,0 +1,86 @@
+.user {
+	display: flex;
+	background-color: rgb(208, 216, 238);
+	padding: 10px;
+}
+
+.avatarinfo {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.name {
+	font-size: 30px;
+	font-weight: normal;
+	text-transform: uppercase;
+	color: rgb(211, 4, 4);
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.avatar {
+	height: 100px;
+}
+
+.followed {
+	position: relative;
+	top: 0;
+	left: 0;
+	padding: 10px;
+	border-radius: 10px;
+	font-size: 20px;
+	transition: all 0.5s ease;
+}
+
+.followed:hover {
+	transform: scale(1.2);
+}
+
+.follow {
+	background-color: green;
+}
+
+.follow:hover {
+	background-color: grey;
+}
+
+.unfollow {
+	background-color: grey;
+}
+
+.unfollow:hover {
+	background-color: green;
+}
+
+.description {
+	display: flex;
+}
+
+.status {
+	display: flex;
+	font-size: 20px;
+	color: crimson;
+	text-transform: uppercase;
+	justify-content: center;
+	align-items: center;
+	padding: 50px;
+}
+
+.location {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.location span {
+	position: relative;
+	top: 0;
+	left: 0;
+}

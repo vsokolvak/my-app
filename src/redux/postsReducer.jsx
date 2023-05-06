@@ -16,7 +16,7 @@ const postsReducer = (data = initialState, action) => {
     // копія стейту
     let copyState = {...data}
     // обробка функції, тип екшина UPDATE-INPUT-TEXT
-    if (action.type === 'UPDATE-INPUT-TEXT') {
+    if (action.type === 'POSTS-UPDATE-INPUT-TEXT') {
         // міняю інпутмеседж на дані які прийшли з компоненти
         copyState.inputMessage = action.userTXT
     // обробка функції, тип екшина UPDATE-POSTS
@@ -30,7 +30,6 @@ const postsReducer = (data = initialState, action) => {
         copyState.post = [...data.post]
         // пушу новий пост
         copyState.post.push(newMessage)
-        console.log(copyState)
         copyState.inputMessage = ''
     }
     // функція редюсер повертає змінену копію стейту

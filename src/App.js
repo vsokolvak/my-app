@@ -2,7 +2,7 @@ import './App.css'
 import './DefoultStyle.css'
 import Body from './components/Body/Body';
 import Header from './components/Header/Header';
-import Nav from './components/Nav/Nav';
+import NavContainer from './components/Nav/NavConteiner';
 
 const App = (props) => {
   return (
@@ -10,9 +10,9 @@ const App = (props) => {
       
       <Header />
 
-      <Nav users={props.state.messages.users} />
+      <NavContainer />
 
-      <Body state={props.state} dispatch={props.dispatch} />
+      <Body />
 
     </div>
   );

@@ -14,13 +14,13 @@
           height: 80px;
 }
 
-p {
+.post p {
           font-size: 20px;
           line-height: 20px;
           margin: 0;
 }
 
-span {
+.post span {
           position: absolute;
           right: 100px;
           bottom: 0;

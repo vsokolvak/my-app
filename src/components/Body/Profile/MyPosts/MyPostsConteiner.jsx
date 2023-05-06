@@ -9,9 +9,8 @@ const mapStateToProps = (state) => {
     post: state.posts.post,
   })
 }
-// функція, що формує пропси з діспатч запитами
-const mapDispatchToProps = () => {}
+
 // функція коннект що визиває компоненту майпост
-const MyPostsConteiner = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsConteiner = connect(mapStateToProps)(MyPosts)
 // експорт за замовченням
 export default MyPostsConteiner;

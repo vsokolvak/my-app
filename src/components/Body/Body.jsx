@@ -6,8 +6,9 @@ import { Route, Routes } from 'react-router-dom';
 import News from './News/News';
 import Music from './Music/Music';
 import Setting from './Setting/Setting';
+import FriendsConteiner from './Friends/FriendsConteiner';
 
-const Body = (props) => {
+const Body = () => {
   return (
     <main>
       <Routes>
@@ -23,6 +24,9 @@ const Body = (props) => {
         <Route path="/Music/*" element={<Music />} />
 
         <Route path="/Setting/*" element={<Setting />} />
+
+        <Route path="/Friends/*" element={<FriendsConteiner />} />
+        
       </Routes>
     </main>
   );

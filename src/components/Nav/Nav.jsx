@@ -5,7 +5,7 @@ import Friends from "./Friends/Friends";
 
 const Nav = (props) => {
   const users = props.users.map((user) => {
-    return <Friends avatar={user.avatar} name={user.name} id={user.id} />;
+		return <Friends key={user.id} avatar={user.avatar} name={user.name} id={user.id} />;
   });
 
   return (
@@ -19,7 +19,7 @@ const Nav = (props) => {
       </div>
 
       <div className={classes.friends}>
-        <p>friends</p>
+        <p><NavLink to="/friends">friends</NavLink></p>
         <div className={classes.friendsitem}>{users}</div>
       </div>
     </nav>

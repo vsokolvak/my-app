@@ -1,17 +1,15 @@
 // імпорти необхідних компонентів
-import React from "react";
 import NewMessage from "./NewMessage";
 import { connect } from "react-redux";
-
-const mapStateToProps = state => {
-  return ({
-    value: state.messages.inputMessage
-  })
-}
-
+// фунуція мапстейттупропс, передає даді необхіжні компоненті із пропсів у вигляді обєкту.
+// велю, дані зі стейту, які будуть виводитися у полі воду
+const mapStateToProps = state => ({value: state.messages.inputMessage})
+// функція мапдіспатчтупропс, передає функції-діспатчі, для обробки дій користувача
 const mapDispatchToProps = dispatch => {
   return ({
+    // функція обробки вводу тексту в текстове поле
     changeMessage(text) {
+      // діспатч із редюсера
       dispatch({
         // тип діспатча
         type: 'UPDATE-INPUT-TEXT',
@@ -19,6 +17,7 @@ const mapDispatchToProps = dispatch => {
         userTXT: text
       });
     },
+    // функція обробки нажаття кнопки
     updateSendMessage() {
       // діспатчу нове повідомлення
       dispatch({
@@ -30,6 +29,5 @@ const mapDispatchToProps = dispatch => {
 }
 // оголошую контейнерну компоненту для обчислення логіки компоненти NewMessage
 const NewMessageConteiner = connect(mapStateToProps, mapDispatchToProps)(NewMessage)
-
 // експортую за замовчуваннят компоненту
 export default NewMessageConteiner;
