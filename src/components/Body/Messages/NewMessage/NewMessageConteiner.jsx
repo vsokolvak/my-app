@@ -1,4 +1,5 @@
 // імпорти необхідних компонентів
+import { compose } from "redux";
 import NewMessage from "./NewMessage";
 import { connect } from "react-redux";
 // фунуція мапстейттупропс, передає даді необхіжні компоненті із пропсів у вигляді обєкту.
@@ -28,6 +29,6 @@ const mapDispatchToProps = dispatch => {
   })
 }
 // оголошую контейнерну компоненту для обчислення логіки компоненти NewMessage
-const NewMessageConteiner = connect(mapStateToProps, mapDispatchToProps)(NewMessage)
+const NewMessageConteiner = compose(connect(mapStateToProps, mapDispatchToProps))(NewMessage)
 // експортую за замовчуваннят компоненту
 export default NewMessageConteiner;

@@ -1,6 +1,7 @@
 // імпортую необхідні компоненти
 import { connect } from "react-redux";
 import NewPost from "./NewPost";
+import { compose } from "redux";
 
 // опис функції, яка генерує дані необхідні для роботи компоненти
 const mapStateToProps = (state) => {
@@ -35,6 +36,6 @@ const mapDispatchToProps = (dispatch) => {
   })
 }
 
-const NewPostConteiner = connect(mapStateToProps, mapDispatchToProps)(NewPost)
+const NewPostConteiner = compose(connect(mapStateToProps, mapDispatchToProps))(NewPost)
 
 export default NewPostConteiner;

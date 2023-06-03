@@ -1,52 +1,33 @@
+// імпортую необхідні компоненти
 import classes from "./Friends.module.css";
 import React from 'react';
 import User from './User/User'
-import axios from 'axios'
+import NumberList from "./NavList/NumberList";
 
+// створюю класову компоненту Friends, 
 class Friends extends React.Component {
-
+	// метод класової компоненти, який відпрацює при створені компоненти
 	componentDidMount() {
 		this.getUsers(this.props.activePage)
 	}
 
-	getUsers(pageCount) {
-		this.props.axiosGetLoaded(true)
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.usersCount}&page=${pageCount}`).then(response => {
-			this.props.setUserState(response.data.items, response.data.totalCount, pageCount)
-			this.setPageNumberList(pageCount)
-			this.props.axiosGetLoaded(false)
-		})
-	}
-	setPageNumberList(pageCount) {
-		let pageNumberList = []
-		let j = (this.props.pageCount < this.props.maxDisplayedPageCount ? this.props.pageCount : this.props.maxDisplayedPageCount)
-		let k = (pageCount === 1 ? pageCount : pageCount - 1)
-		if (pageCount === this.props.pageCount) k = k - 1
-		for (let i = 0; i < j; i++) {
-			pageNumberList[i] = k
-			k = k + 1
-		}
-		this.props.setPageNumberList(pageNumberList)
+	// метод компоненти, який діспатчить функцію санку, яка зробе запит на сервер і загрузить в стейт список юзерів? а також створить список сторінок для навігації
+	getUsers = (pageNumber) => {
+		this.props.usersGetList(this.props.usersCount, pageNumber)
 	}
 
+	// метод, для підписки відписки від користувача, та загрузки оновлених даних
+	followedToUser = (id, follow) => {
+		this.props.usersFollowedToUser(id, follow)
+		// this.getUsers(this.props.activePage)
+	}
+
+	// метод рендер
 	render() {
-		const userList = this.props.users.map((user) => (<User key={user.id} users={user} defoultImage={this.props.defoultImage} followToFriend={this.props.followToFriend} setUserState={this.props.setUserState} />))
+		// масив юзерліст, в якому формую компоненти юзер
+		const userList = this.props.users.map((user) => (<User key={user.id} users={user} defoultImage={this.props.defoultImage} usersSetState={this.props.usersSetState} loaded={this.props.loaded} followedToUser={this.followedToUser} />))
 
-		const pageList =
-			this.props.pageNumberList.map((el) => {
-				return (
-					<span key={el} className={(el === this.props.activePage ? classes.activePageNumber : '') + ' ' + classes.pageNumber}
-						onClick={() => { this.getUsers(el) }}>
-						{el}
-					</span>
-				)
-			})
-		let startStyleNone = {}
-		if (this.props.activePage <= 2) startStyleNone.display = 'none'
-
-		let endStyleNone = {}
-		if (this.props.activePage >= this.props.pageCount - 1) endStyleNone.display = 'none'
-
+		// це вбудована компонента з лоадером
 		let loader = []
 		for (let i = 0; i < 10; i++) {
 			loader[i] = <div 
@@ -57,35 +38,36 @@ class Friends extends React.Component {
 			</div>
 		}
 
+		// повертаю жсх
 		return (
 			<div>
+				{/* френди, відображаються завжди */}
 				<div className={classes.pageCount}>
 					<div> Friends </div>
 				</div>
 
-				{this.props.loaded 
+				{this.props.loaded
+				// якщо іде запит на сервер, відображаю компоненту лоадер
 				? <div className={classes.loaded}>
 						{loader}
 				</div> 
+				// коли запит завершився, відображаю юзерів
 				: <div className={classes.userlist}>
 					<div>
-						<span
-							className={classes.pageNumber}
-							style={startStyleNone}
-							onClick={() => { this.getUsers(1) }}>
-							1 ...
-						</span>
-						{pageList}
-						<span className={classes.pageNumber}
-							style={endStyleNone}
-							onClick={() => { this.getUsers(this.props.pageCount) }} >
-							... {this.props.pageCount}</span>
+							<NumberList activePage={this.props.activePage}
+								usersCount={this.props.usersCount}
+								getUsers={this.getUsers}
+								pageCount={this.props.pageCount}
+								maxDisplayedPageCount={this.props.maxDisplayedPageCount}
+								usersSetPageNumberList={this.props.usersSetPageNumberList}
+								pageNumberList={this.props.pageNumberList} />
 					</div>
+					{/* масив юзерів */}
 					{userList}
 				</div>}
 			</div>
 		);
 	}
 };
-
+// експортую компоненту по дефолту
 export default Friends;

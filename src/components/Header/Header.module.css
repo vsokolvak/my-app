@@ -1,17 +1,33 @@
-
 .header {
-          grid-area: h;
-          background-color: aqua;
-          display: flex;
-          align-items: center;
-          padding: 10px;
+	grid-area: h;
+	background-color: aqua;
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
+
+.page {
+	display: flex;
+	align-items: center;
+}
+
 .logo {
-          width: 45px;
-          height: 45px;
-          background-color: blue;
-          border-radius: 50%;
-          text-align: center;
-          margin-right: 20px;
-          font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 70px;
+	height: 40px;
+	background-color: blue;
+	border-radius: 50%;
+	margin-right: 20px;
+	font-size: 14px;
+}
+
+.autorize {
+	display: flex;
+	gap: 50px;
+	align-items: center;
 }

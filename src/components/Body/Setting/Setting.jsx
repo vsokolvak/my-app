@@ -1,12 +1,15 @@
-import classes from "./Setting.module.css";
+// import classes from "./Setting.module.css";
 import React from 'react';
+import { RedirectHoc } from '../../../hoc/RedirectAutorize';
 
 const Setting = () => {
   return (
-    <div>
-      <div>setting</div>
-    </div>
+		<div>
+				<div>
+					<span>setting</span>
+				</div>
+		</div>
   );
 };
 
-export default Setting;
+export default RedirectHoc(Setting);

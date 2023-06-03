@@ -1,0 +1,35 @@
+.status {
+	font-size: 16px;
+	padding: 5px;
+}
+
+.status button {
+	color: darkslategray;
+	background-color: burlywood;
+	padding: 5px;
+	border-radius: 5px;
+	transition: all 0.2s ease;
+	font-weight: bold;
+}
+
+.status button:hover {
+	transform: scale(1.1);
+}
+
+.wiewStatus {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+}
+
+.wiewStatus span {
+	border: 2px solid aquamarine;
+	border-radius: 10px;
+	font-weight: bold;
+}
+
+.editStatus {
+	display: flex;
+	gap: 5px;
+	align-items: center;
+}

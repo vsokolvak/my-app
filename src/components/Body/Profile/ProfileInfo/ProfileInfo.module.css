@@ -1,1 +1,58 @@
+.profile {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 3fr 1fr;
+	padding: 20px;
+	column-gap: 20px;
+}
 
+.about {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+} 
+
+.fullname {
+	color: brown;
+	font-size: 30px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.photos {
+	height: 150px;
+}
+
+.aboutwork {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-direction: column;
+}
+
+.aboutwork span {
+	font-size: 20px;
+}
+
+.aboutworktitle {
+	text-transform: uppercase;
+	color: blueviolet;
+}
+
+.contacts {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.contacts a {
+	color: brown;
+	text-decoration: underline;
+}
+
+.contactitemskey {
+	color: blueviolet;
+	text-transform: uppercase;
+}

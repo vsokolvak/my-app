@@ -1,6 +1,10 @@
+// імпортую необхідні компоненти
 import { connect } from 'react-redux';
 import Friends from './Friends';
+import { usersSetState, usersSetPageNumberList, usersGetList, usersFollowedToUser } from '../../../redux/reducers/usersReducer';
+import { compose } from 'redux';
 
+// формую пропси для функції конект
 const mapStateToProps = state => ({ 
 	users: state.users.users, 
 	defoultImage: state.users.defoultImage,
@@ -13,38 +17,7 @@ const mapStateToProps = state => ({
 	loaded: state.users.axiosParams.loaded
  })
 
-const mapDispatchToProps = dispatch => {
-	return ({
-		followToFriend(id) {
-			dispatch({
-				type: 'FOLLOWED',
-				id: id,
-			})
-		},
-		setUserState(data, pageCount, activePage) {
-			dispatch({
-				type: 'SET_USER_STATE',
-				data: data,
-				pageCount: pageCount,
-				activePage: activePage,
-			})
-		},
-		setPageNumberList(pageNumberList) {
-			dispatch({
-				type: 'SET_PAGE_NUMBER_LIST',
-				pageNumberList: pageNumberList,
-			})
-		},
-		axiosGetLoaded(loaded) {
-			dispatch({
-				type: 'AXIOS_GET_LOADED',
-				loaded: loaded,
-			})
-		}
-	})
-}
-
-const FriendsConteiner = connect(mapStateToProps, mapDispatchToProps)(Friends)
-
-
+// конекчу компоненту френдс до контейнерної компоненти 
+const FriendsConteiner = compose(connect(mapStateToProps, { usersSetState, usersSetPageNumberList, usersGetList, usersFollowedToUser } ))(Friends)
+// експортую по дефолту
 export default FriendsConteiner;

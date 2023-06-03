@@ -1,0 +1,44 @@
+.autorizeConteiner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 300px;
+	margin: auto;
+	gap: 20px;
+}
+
+.autorizeCblock {
+	padding: 50px;
+}
+
+.autorizeConteiner input {
+	width: 200px;
+	border: 1px solid black;
+	background-color: azure;
+	color: black;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.autorizeConteiner div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.autorizeConteiner button {
+	width: 200px;
+	border: 1px solid black;
+	background-color: azure;
+	color: black;
+	padding: 5px;
+	border-radius: 10px;
+	transition: all 0.3s linear;
+}
+
+.autorizeConteiner button:hover {
+	background-color: darkgrey;
+	transform: scale(1.1)
+}

@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import NavContainer from './components/Nav/NavConteiner';
 
 const App = (props) => {
+	console.log('app didmount')
   return (
     <div className="app-wraper">
       

@@ -1,15 +1,40 @@
+// імпортую необхідні компоненти
+import { connect } from 'react-redux';
+import StatusConteiner from '../../reusedComponent/Status/StatusConteiner';
+import AutorozeConteiner from './Autorize/AutorozeConteiner';
 import classes from './Header.module.css'
 import React from 'react';
+import { autorizeSetMyStatus } from '../../redux/reducers/autorizeReducer';
 
-const Header = () => {
-  return (
-      <header className={classes.header}>
-        <div className={classes.logo}>
-          logo-text
-        </div>
-        header
-      </header>
-  );
+// функціональна компонента хідер
+const Header = (props) => {
+
+	// повертаю жсх
+	return (
+		// контейнер хедер
+		<header className={classes.header}>
+			{/* блок логотипу */}
+			<div className={classes.page}>			
+				<span className={classes.logo}> logo-text </span>
+				<span> header </span>
+			</div>
+
+			{/* блок даних авторизації */}
+			<div className={classes.autorize}>
+				
+				{/* контейнер, в якому показується статус */}
+				<StatusConteiner status={props.status} changeStatus={props.autorizeSetMyStatus } />
+				
+				{/* контейнер авторизації */}
+				<AutorozeConteiner />
+			</div>
+		</header>
+	);
 }
 
-export default Header;
+	const mapStateToProps = (state) => ({
+	status: state.autorize.status
+})
+
+// експортую за дефолтом хедер
+export default connect(mapStateToProps, {autorizeSetMyStatus})(Header);

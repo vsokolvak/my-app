@@ -1,6 +1,7 @@
 // імпортую необхідні компоненти
 import { connect } from "react-redux";
 import Messages from "./Messages";
+import { compose } from "redux";
 // опис функції mapStateToProps, яка передає в пропси дані зі стейту у вигляді масиву
 const mapStateToProps = state => {
   return ({
@@ -11,7 +12,7 @@ const mapStateToProps = state => {
   })
 }
 // конект презентаційної компоненти меседж, до її контейнерної компоненти
-const MessagesConteiner = connect(mapStateToProps,{})(Messages)
+const MessagesConteiner = compose(connect(mapStateToProps))(Messages)
 
 // експортую за замовчанням MessagesConteiner
 export default MessagesConteiner;

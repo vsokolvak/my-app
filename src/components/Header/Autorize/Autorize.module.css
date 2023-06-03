@@ -1,0 +1,16 @@
+.autorizeInfo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.autorizeInfo img {
+	height: 40px;
+}
+
+.autorizeInfoName {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}

@@ -1,0 +1,21 @@
+.pageNumber {
+	background-color: black;
+	color: azure;
+	transition: all 0.5s ease;
+	padding: 5px;
+	font-size: 25px;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 5px;
+}
+
+.pageNumber:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.activePageNumber {
+	font-weight: bold;
+	background-color: azure;
+	color: black;
+}
