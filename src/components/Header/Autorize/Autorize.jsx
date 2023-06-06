@@ -2,10 +2,15 @@
 import { NavLink } from 'react-router-dom'
 import classes from './Autorize.module.css'
 import Loader from './../../../reusedComponent/Loader/Loader'
+import Login from './Login/Login'
 
 // функціональна компонента ауторіз
 const Autorize = props => {
-	
+
+	// функції для активації та дезактивації вікна логінізації
+	const loginActivate = () => { props.loginSetActivate(true) }
+	const loginDeactivate = () => { props.loginSetActivate(false) }
+
 	// повертаю жсх розмітку
 	return(
 		// головний блок
@@ -25,9 +30,10 @@ const Autorize = props => {
 						</div>
 				</div></NavLink>
 					// якщо користувач не авторизований, вивожу кнопку авторизації
-				: !props.disableButton ? <div> <button onClick={props.logined} > Login </button> </div> 
+				: !props.disableButton ? <div> <button onClick={loginActivate} > Login </button> </div> 
 					: < Loader />
 			}
+			{props.loginActivate && <Login /> }
 		</div>
 	)
 }

@@ -23,7 +23,7 @@ const Header = (props) => {
 			<div className={classes.autorize}>
 				
 				{/* контейнер, в якому показується статус */}
-				<StatusConteiner status={props.status} changeStatus={props.autorizeSetMyStatus } />
+				{ props.logined && <StatusConteiner status={props.status} changeStatus={props.autorizeSetMyStatus } />}
 				
 				{/* контейнер авторизації */}
 				<AutorozeConteiner />
@@ -33,7 +33,8 @@ const Header = (props) => {
 }
 
 	const mapStateToProps = (state) => ({
-	status: state.autorize.status
+	status: state.autorize.status,
+	logined: state.autorize.autorizeData.logined
 })
 
 // експортую за дефолтом хедер

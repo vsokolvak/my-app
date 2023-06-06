@@ -5,6 +5,7 @@ import usersReducer from "./reducers/usersReducer";
 import profileReducer from "./reducers/profileReducer";
 import autorizeReducer from "./reducers/autorizeReducer";
 import thunk from "redux-thunk";
+import { reducer as formReducer } from 'redux-form';
 
 // створюю (редюсер) діспач функцію комбінуючи редюсери
 let reducers = combineReducers({
@@ -18,6 +19,8 @@ let reducers = combineReducers({
 		profile: profileReducer,
 		// добавляю в стор обєкт ауторіз та редюсер
 		autorize: autorizeReducer,
+		// добавляю в стор обєкт форм, для обробки форм
+		form: formReducer,
 })
 // створюю сторе
 let store = createStore(reducers, applyMiddleware(thunk))

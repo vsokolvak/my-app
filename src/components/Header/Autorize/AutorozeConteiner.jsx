@@ -9,6 +9,10 @@ import { compose } from "redux";
 // класова компонента-контейнер для блоку ауторізед
 class AutorizeConteiner extends React.Component {
 
+	state = {
+		loginActivate: false,
+	}
+
 	// метод, який виконується при створенні компоненти
 	componentDidMount() {
 		// this.logined()
@@ -18,6 +22,11 @@ class AutorizeConteiner extends React.Component {
 	logined = () => {	
 		this.props.autorizedMe();
 		this.setPhoto()
+	}
+
+	// функція для активації вікна авторизації
+	loginSetActivate = (type) => {
+		this.setState({ loginActivate: type })
 	}
 
 	// мій метод для загрузки і встановлення фото авторизованого користувача
@@ -33,7 +42,12 @@ class AutorizeConteiner extends React.Component {
 		// повертає жсх розмітку
 		return(
 			// компонента ауторіз, передаю пропси, та колбеком метод логінед
-			<Autorize {...this.props} logined={this.logined} />
+			<Autorize 
+				{...this.props} 
+				logined={this.logined} 
+				loginSetActivate={this.loginSetActivate}
+				loginActivate={this.state.loginActivate} 
+			/>
 		)
 	}
 }
