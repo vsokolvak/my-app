@@ -60,12 +60,32 @@ const request = {
 
 	// запити на профіль, авторизаці, видалення та редагування
 	auth: {
-		// гет запит, на авторизацію, повертає проміс з обєктом
+		// запит, на авторизацію, повертає проміс з обєктом
 		// якщо успішно, резальт = тру, дата = дані 
 		// якщо не успішно, резальт = фолс, меседж = повідомлення про помилку
-		authMeLogin() {
+		authMe() {
 			return requestSamurai.get(`auth/me`).then(response => {
 				if (response.data.resultCode === 0) return ({ result: true, data: response.data.data })
+				else return ({ result: false, messages: response.data.messages })
+			})
+		},
+
+		// відправдяє пост запит на логін, повертає ід в разі успіху
+		// повертає меседж в разі помилки
+		authMeLogin(data) {
+			debugger
+			if (data) return requestSamurai.post(`auth/login`, {...data}).then(response => {
+				debugger
+				if (response.data.resultCode === 0) return ({ result: true, id: response.data.data.iserId })
+				else return ({ result: false, messages: response.data.messages })
+			})
+		},
+
+		// відправдяє delete запит на логін, повертає тру в разі успіху
+		// повертає меседж в разі помилки
+		authMeLogout() {
+			return requestSamurai.delete(`auth/login`).then(response => {
+				if (response.data.resultCode === 0) return ({ result: true })
 				else return ({ result: false, messages: response.data.messages })
 			})
 		},

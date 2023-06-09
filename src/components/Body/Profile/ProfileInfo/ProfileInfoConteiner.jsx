@@ -4,7 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
 import ProfileInfo from './ProfileInfo';
-import { profileSetData, profileSetFollow, profileSetId, profileFollowedToUser } from '../../../../redux/reducers/profileReducer';
+import { profileSetData, profileSetFollow, profileFollowedToUser, profileSetId } from '../../../../redux/reducers/profileReducer';
 import request from '../../../../axiosRequest/axiosRequest';
 import { compose } from 'redux';
 
@@ -12,10 +12,16 @@ import { compose } from 'redux';
 class ProfileInfoConteiner extends React.Component {
 
 	// при створені компоненти виконати запит на сервер за даними конкретного профіля
-
 	componentDidMount() {
-		this.getProfileInfo(this.props.currentId)
-		this.isFollowed(this.props.currentId)
+		// this.getProfileInfo(this.props.currentId)
+		// this.isFollowed(this.props.currentId)
+	}
+
+	componentDidUpdate(oldProps) {
+		if (oldProps.currentId !== this.props.currentId){
+			this.getProfileInfo(this.props.currentId)
+			this.isFollowed(this.props.currentId)
+		}
 	}
 
 	// метод компоненти, для запиту на сервер
@@ -50,4 +56,4 @@ const mapDispatchToProps = (state) => ({
 	})
 
 // експортую за замовчуванням компоненту контейнерну, яка описана через клас
-export default compose(connect(mapDispatchToProps, { profileSetData, profileSetFollow, profileSetId, profileFollowedToUser }))(ProfileInfoConteiner)
+export default compose(connect(mapDispatchToProps, { profileSetData, profileSetFollow, profileFollowedToUser, profileSetId }))(ProfileInfoConteiner)

@@ -8,7 +8,6 @@ import News from './News/News';
 import Music from './Music/Music';
 import Setting from './Setting/Setting';
 import FriendsConteiner from './Friends/FriendsConteiner';
-import AutorizeConteiner from '../../reusedComponent/Autorize/AutorizeConteiner'
 
 // оголошую функціональну компоненту баді
 const Body = () => {
@@ -33,8 +32,6 @@ const Body = () => {
 				<Route path="/Setting/*" element={<Setting />} />
 
 				<Route path="/Friends/*" element={<FriendsConteiner />} />
-
-				<Route path="/autorize/*" element={<AutorizeConteiner />} />
 
 				<Route path="*" element={<Profile />} />
 

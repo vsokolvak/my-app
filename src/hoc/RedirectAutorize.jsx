@@ -1,21 +1,20 @@
 // імпортую необхідні компоненти
 import { connect } from "react-redux"
-import { Navigate } from "react-router-dom"
+import LoginConteiner from "../reusedComponent/Login/LoginConteiner"
 
 // Хук функція, приймає компоненту в параметр
-// редіректить на сторінку авторизації, якщо не авторизований користувач
-export const RedirectHoc = (Component) => {
+// відобразить сторінку авторизації, якщо не авторизований користувач
+export const RedirectHoc = Component => {
 	
 	// функціональна компонента
-	const RedirectAutorize = (props) => {
+	const RedirectAutorize = props => {
 
 		// повертаю жсх
 		return (
 			// якщо не авторизований, перенаправляю на сторінку авторизації
 			// інакше відмальовує компоненту
 			<div>
-				{!props.autorize && <Navigate to={'/autorize'} /> }
-				{<Component />}
+				{!props.autorize ? <LoginConteiner displayLogin={true} /> : <Component />}
 			</div>
 		)
 	}

@@ -36,6 +36,11 @@ const autorizeReducer = (state = initialState, action) => {
 		// екшн установки фото авторизованого юзера
 			case 'AUTORIZE_SET_PHOTO':
 			return ({ ...state, autorizeData: { ...state.autorizeData, photo: action.photo } })
+		
+		// екшн очистки даних
+		case 'AUTORIZE_CLEAR_DATA':
+			return ({ ...state, autorizeData: action.autorizeData })
+
 		default:
 			return state;
 	}
@@ -58,6 +63,9 @@ export const autorizeSetPhoto = (photoUrl) => ({ type: 'AUTORIZE_SET_PHOTO', pho
 // функція конструктор для встановлення блокування кнопки запиту
 export const autorizeDisableButton = (disableButton) => ({ type: 'AUTORIZE_DISABLE_BUTTON', disableButton: disableButton })
 
+// функція конструктор для очищення даних авторизації
+export const autorizeClearData = () => ({ type: 'AUTORIZE_CLEAR_DATA', autorizeData: initialState.autorizeData })
+
 // функція санка, робит гет запит на сервер для авторизації,
 // в разі успіху діспатчить авторизовані дані в стейт
 // і робе запит за статусом авторизованого користувача, та діспатчить дані в стейт
@@ -65,13 +73,39 @@ export const autorizeDisableButton = (disableButton) => ({ type: 'AUTORIZE_DISAB
 export const autorizedMe = () => {
 	return (dispatch) => {
 		dispatch(autorizeDisableButton(true))
-		request.auth.authMeLogin().then(response => {
+		request.auth.authMe().then(response => {
 			if (response.result) dispatch(autorizeSetData(response.data))
 			else dispatch(autorizeSetError(response.messages))
 			dispatch(autorizeDisableButton(false))
 			request.auth.authMeStatus(response.data.id).then(response => {
 				dispatch(autorizeSetStatus(response.data))
 			})
+		})
+	}
+}
+
+// функція санка, робит пост запит на сервер для авторизації,
+// в разі успіху робить гет запит за даними
+// і робе запит за статусом авторизованого користувача, та діспатчить дані в стейт
+// якщо помилка, діспатчить повідомлення про помилку
+export const autorizeMeLogin = (data) => {
+	debugger
+	return (dispatch) => {
+		request.auth.authMeLogin(data).then(response => {
+			if (response.result) dispatch(autorizedMe())
+			else dispatch(autorizeSetError(response.messages))
+		})
+	}
+}
+
+// функція санка, робит delete запит на сервер для авторизації,
+// в разі успіху очищає дані в стейті
+
+export const autorizeMeLogout = () => {
+	return (dispatch) => {
+		request.auth.authMeLogout().then(response => {
+			if (response.result) dispatch(autorizeClearData())
+			else dispatch(autorizeSetError(response.messages))
 		})
 	}
 }

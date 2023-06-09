@@ -5,17 +5,10 @@ import NewPostConteiner from './NewPost/NewPostConteiner';
 import Maincontent from './Maincontent/Maincontent';
 import MyPostsConteiner from './MyPosts/MyPostsConteiner';
 import ProfileInfoConteiner from './ProfileInfo/ProfileInfoConteiner';
-import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { profileSetId } from '../../../redux/reducers/profileReducer';
 
 // функція компоненти
 const Profile = (props) => {
-
-	// беру із рядка адреси айді юзера, і прокидаю його в стейт як активного користувача дані якого відображати
-	const userId = useParams().userId || 3
-
-	props.profileSetId(userId)
 
   return (
     <main>
@@ -23,7 +16,7 @@ const Profile = (props) => {
       <Maincontent />
 
 			{/* копонента з даними переглядаючого профіля */}
-      <ProfileInfoConteiner userId={userId} />
+			<ProfileInfoConteiner />
 
 			{/* компонента для нових постів */}
       <NewPostConteiner />
@@ -41,4 +34,4 @@ const mapStateToProps = () => {
 	})
 }
 // прокидаю в компоненту профайл дані зі стора
-export default connect( mapStateToProps , { profileSetId })(Profile);
+export default connect(mapStateToProps, { })(Profile);

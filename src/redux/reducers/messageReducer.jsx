@@ -34,34 +34,38 @@ const initialState = {
         { textMessage: "txt3", id: "3", likesCount: 0 },
         { textMessage: "txt4", id: "4", likesCount: 0 },
         { textMessage: "txt5", id: "5", likesCount: 0 },
-    ],
-    inputMessage: ""
+    ]
 }
 // функція-редюсер, формує стейт в обєкт месседж, та діспачить запити до нього
 const messageReducer = (data = initialState, action) => {
-    // роблю копію стейта, для відловлювання змін і роботи в реакт редакс
-    let stateCopy = {...data}
-    // обробка запиту для типу UPDATE-INPUT-TEXT
-    if (action.type === 'UPDATE-INPUT-TEXT') {
-        // міняю дані в інпутмеседж на дані які прийшли в запиті
-        stateCopy.inputMessage = action.userTXT
-    // обробка запиту для типу UPDATE-MESSAGE
-    } else if (action.type === 'UPDATE-MESSAGE') {
-        // створюю новий обєкт для масиву меседж
-        const newTxtMessage = {
-            textMessage: data.inputMessage,
-            id: "5",
-            likesCount: 0
-        }
-        // роблю глибоку копію масиву меседж в копії стейту
-        stateCopy.message = [...data.message]
-        // добавляю новий елемент в копію стейту
-        stateCopy.message.push(newTxtMessage)
-        // очищую поле вводу
-        stateCopy.inputMessage = ''
-    }
-    // повертаю копію стейту, щоб реакт редакс порівняв її з оригіналом, і переписав компоненти, які зазнали змін
-    return stateCopy
+
+	switch (action.type) {
+		case 'SEND-MESSAGE':
+			// створюю новий обєкт для масиву меседж
+			const newTxtMessage = {
+				textMessage: action.textMessage,
+				id: "5",
+				likesCount: 0
+			}
+
+			// добавляю новий елемент в масив повідомлень
+			data.message.push(newTxtMessage)
+
+			// повертаю оновлений стейт
+
+			return {...data, message: [...data.message]}
+
+		default:
+			return data
+	}
 }
+export const messageSend = textMessage => ({
+	// тип діспатча
+	type: 'SEND-MESSAGE',
+	// це текст, який ввели в текстове поле, ним буде замінено значення в стейті
+	textMessage
+})
+
+
 // експорт за замовчуванням
 export default messageReducer

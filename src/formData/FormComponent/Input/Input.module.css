@@ -1,0 +1,12 @@
+.input {
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 10px;
+	font-size: 20px;
+	background-color: azure;
+	color: black;
+}
+
+.input:focus {
+	border-color: green;
+}

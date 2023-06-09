@@ -3,7 +3,7 @@ import classes from './Follow.module.css'
 
 // функціональна компонента фолов
 const Follow = (props) => {
-	console.log(props)
+
 	// повертаю жсх розмітку
 	return(
 		// головний контейнер

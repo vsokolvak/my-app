@@ -1,0 +1,71 @@
+@keyframes putDoun {
+	0% {
+		top: -100%;
+	}
+	100% {
+		top: 0;
+	}
+}
+
+.login {
+	width: 100%;
+	height: 100%;
+	border: 5px solid black;
+	border-radius: 40px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgba(196, 194, 192, 0.836);
+	display: grid;
+	place-items: center;
+	animation: putDoun 1s linear;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	background: #686666;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.formText {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+}
+
+.form button {
+	width: 200px;
+	border: 1px solid black;
+	background-color: azure;
+	color: black;
+	padding: 5px;
+	border-radius: 10px;
+	transition: all 0.3s linear;
+}
+
+.form button:hover {
+	background-color: darkgrey;
+	transform: scale(1.1)
+}
+
+@keyframes clearForm {
+	0% {
+		top: 0;
+	}
+	100% {
+		top: -100%;
+		display: none;
+	}
+}
+
+.clearForm {
+	animation: clearForm 1s linear;
+	top: -100%;
+}

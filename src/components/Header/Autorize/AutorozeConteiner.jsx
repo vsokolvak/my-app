@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Autorize from "./Autorize";
 import axios from "axios";
-import { autorizeSetData, autorizeSetPhoto, autorizedMe } from "../../../redux/reducers/autorizeReducer";
+import { autorizeSetData, autorizeSetPhoto, autorizedMe, autorizeMeLogout } from "../../../redux/reducers/autorizeReducer";
 import { compose } from "redux";
 
 // класова компонента-контейнер для блоку ауторізед
@@ -15,7 +15,7 @@ class AutorizeConteiner extends React.Component {
 
 	// метод, який виконується при створенні компоненти
 	componentDidMount() {
-		// this.logined()
+		this.logined()
 	}
 
 	// мій метод, відправляє на сервер запит для авторизації, якщо успішно, записує в стейт дані авторизованого користувача, та загружає встановлює фото
@@ -46,7 +46,7 @@ class AutorizeConteiner extends React.Component {
 				{...this.props} 
 				logined={this.logined} 
 				loginSetActivate={this.loginSetActivate}
-				loginActivate={this.state.loginActivate} 
+				loginActivate={this.state.loginActivate}
 			/>
 		)
 	}
@@ -63,4 +63,4 @@ const mapDispatchToProps = state => {
 }
 
 // експортую по дефолту компоненту через метод конект, передаючи пропси зі стейту та конструктори діспатчів
-export default compose(connect(mapDispatchToProps, { autorizeSetData, autorizeSetPhoto, autorizedMe }))(AutorizeConteiner)
+export default compose(connect(mapDispatchToProps, { autorizeSetData, autorizeSetPhoto, autorizedMe, autorizeMeLogout }))(AutorizeConteiner)

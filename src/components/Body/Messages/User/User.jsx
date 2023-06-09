@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const User = (props) => {
 
-  return (
+	return (
       <div className={classes.user}>
         <p> 
           <img src={props.avatar} alt="avatar" />
