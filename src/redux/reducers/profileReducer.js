@@ -37,20 +37,20 @@ const reducer = (data = initialState, action) => {
 	}
 }
 
-// екшн кріейтер для дії додавання даних користувача в стейт, потрібен для створення контейнерної компоненти через конект
-export const profileSetData = (profile) => ({
+// діспатчить дані користувача в стейт
+export const profileSetData = profile => ({
 		type: "GET_PROFILE_DATA",
 		profile: profile,
 	})
 
 // екшн кріейтер для встановлення ід користувача
-export const profileSetId = (id) => ({
+export const profileSetId = id => ({
 	type: "SET_PROFILE_ID",
 	id: id,
 })
 
 // екшн кріейтер для встановлення даних фолоу для користувача
-export const profileSetFollow = (follow) => ({
+export const profileSetFollow = follow => ({
 	type: "SET_PROFILE_FOLLOW",
 	follow: follow,
 })
@@ -60,6 +60,14 @@ export const profileDisableButtonFollow = (disableButtonFollow) => ({
 	type: "PROFILE_DISABLE_BUTTON_FOLLOW",
 	disableButtonFollow: disableButtonFollow,
 })
+
+export const profileGetUserData = id => {
+	return dispatch => {
+		dispatch(profileSetId(id))
+		request.users.getProfile(id).then( Response => dispatch(profileSetData(Response)))
+		request.followed.isFollow(id).then(response => profileSetFollow(response))
+	}
+}
 
 // функція thank приймає параметри ід юзера та булеве значення фолоу
 // в залежності від значення фолоу робить запит на сервер,

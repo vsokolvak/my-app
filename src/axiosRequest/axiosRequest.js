@@ -1,4 +1,4 @@
-// компонента з методами запитів аксіос
+// файл з методами запитів аксіос
 // імпортую необхідні компоненти
 import axios from "axios";
 
@@ -56,6 +56,11 @@ const request = {
 		getUsers(usersCount, pageNumber) {
 			return requestSamurai.get(`users?count=${usersCount}&page=${pageNumber}`).then(response => ({ users: response.data.items, totalCount: response.data.totalCount }))
 		},
+
+		// гет запит на отримання даних юзера по ід
+		getProfile(id) {
+			return requestSamurai.get(`profile/${id}`).then( Response => Response.data)
+		}
 	},
 
 	// запити на профіль, авторизаці, видалення та редагування
@@ -73,9 +78,8 @@ const request = {
 		// відправдяє пост запит на логін, повертає ід в разі успіху
 		// повертає меседж в разі помилки
 		authMeLogin(data) {
-			debugger
+
 			if (data) return requestSamurai.post(`auth/login`, {...data}).then(response => {
-				debugger
 				if (response.data.resultCode === 0) return ({ result: true, id: response.data.data.iserId })
 				else return ({ result: false, messages: response.data.messages })
 			})

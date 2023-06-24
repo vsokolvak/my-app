@@ -1,9 +1,10 @@
 import classes from './HocShowError.module.css'
 
-export const HocShowError = (Component) =>{
+export const HocShowError = Component =>{
 	return ({input, meta, ...props}) => {
 
-		const error = (meta.active && meta.error)
+		let error = false
+		if (meta.error) error = true
 
 		let classError = ''
 		if (error) classError += classes.error

@@ -69,3 +69,9 @@
 	animation: clearForm 1s linear;
 	top: -100%;
 }
+
+.showError, .showError input, .showError div {
+	height: 0;
+	padding: 0;
+	border: 0;
+}

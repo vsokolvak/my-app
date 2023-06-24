@@ -25,8 +25,13 @@ let LoginForm = props => {
 			<div className={classes.formText}>
 					<label htmlFor="email">email</label>
 					<Field id="email" name="email" 
-				component={Input} type="text" 
+						component={Input} type="email" 
 				validate={[props.required, maxLenght]}/>
+			</div>
+			
+				<div className={classes.showError}>
+					<Field id="showError" name="showError" 
+						component={Input} type="text" />
 			</div>
 
 			{/* поле вводу пароля */}

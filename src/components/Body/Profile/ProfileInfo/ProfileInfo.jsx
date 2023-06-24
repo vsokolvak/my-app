@@ -3,14 +3,9 @@ import FollowConteiner from '../../../../reusedComponent/Follow/FollowConteiner'
 import Loader from './../../../../reusedComponent/Loader/Loader'
 import classes from "./ProfileInfo.module.css";
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
 // функціональна компонента, отримує пропси в параметри
-const ProfileInfo = (props) => {
-
-	// беру із рядка адреси айді юзера, і прокидаю його в стейт як активного користувача дані якого відображати
-	const userId = useParams().userId || 3
-	props.profileSetId(userId)
+const ProfileInfo = props => {
 
 	// змінна для масиву контактів юзера
 	let contacts = []

@@ -1,50 +1,30 @@
 // імпортую необхідні компоненти
 // import classes from "./ProfileInfo.module.css";
-import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import ProfileInfo from './ProfileInfo';
-import { profileSetData, profileSetFollow, profileFollowedToUser, profileSetId } from '../../../../redux/reducers/profileReducer';
-import request from '../../../../axiosRequest/axiosRequest';
+import { profileFollowedToUser, profileGetUserData } from '../../../../redux/reducers/profileReducer';
 import { compose } from 'redux';
+import { useParams } from 'react-router-dom';
 
 // створюю класову компоненту контейнер, для компоненти профіля
-class ProfileInfoConteiner extends React.Component {
+const ProfileInfoConteiner = props => {
 
-	// при створені компоненти виконати запит на сервер за даними конкретного профіля
-	componentDidMount() {
-		// this.getProfileInfo(this.props.currentId)
-		// this.isFollowed(this.props.currentId)
-	}
+	// беру із рядка адреси айді юзера
+	const userId = useParams().userId || 2
 
-	componentDidUpdate(oldProps) {
-		if (oldProps.currentId !== this.props.currentId){
-			this.getProfileInfo(this.props.currentId)
-			this.isFollowed(this.props.currentId)
-		}
-	}
 
-	// метод компоненти, для запиту на сервер
-	getProfileInfo = (id) => {
-		axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`).then((Response) => {this.props.profileSetData(Response.data)})
-	}
+	// виконує запит на сервер по ід користувача, якщо ід зміниться, виконає новий запит
+	useEffect( () => {
+		props.profileGetUserData(userId)
+	}, [ userId ] )
 
-	// метод для перевірки чи підписані на даного користувача
-	isFollowed = (id) => {
-		request.followed.isFollow(id).then(response => {
-			this.props.profileSetFollow(response)
-		})
+	// const profileGetUserData = () => props.profileGetUserData(props.currentId)
 
-	}
-
-	// метод компоненти рендер
-	render() {
-
-		// повертаю жсх розмітку
-		return(
-			<ProfileInfo {...this.props} rerender={this.rerender} />
-		)
-	}
+	// пвертаю жсх
+	return(
+		<ProfileInfo {...props} />
+	)
 }
 
 // функція для прокидання даних зі стейту в пропси через функцію конект
@@ -56,4 +36,4 @@ const mapDispatchToProps = (state) => ({
 	})
 
 // експортую за замовчуванням компоненту контейнерну, яка описана через клас
-export default compose(connect(mapDispatchToProps, { profileSetData, profileSetFollow, profileFollowedToUser, profileSetId }))(ProfileInfoConteiner)
+export default compose(connect(mapDispatchToProps, { profileFollowedToUser, profileGetUserData }))(ProfileInfoConteiner)

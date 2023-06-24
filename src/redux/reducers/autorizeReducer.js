@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form"
 import request from "../../axiosRequest/axiosRequest"
 // іціціюю стейт
 const initialState = {
@@ -89,11 +90,14 @@ export const autorizedMe = () => {
 // і робе запит за статусом авторизованого користувача, та діспатчить дані в стейт
 // якщо помилка, діспатчить повідомлення про помилку
 export const autorizeMeLogin = (data) => {
-	debugger
+
 	return (dispatch) => {
+
 		request.auth.authMeLogin(data).then(response => {
 			if (response.result) dispatch(autorizedMe())
-			else dispatch(autorizeSetError(response.messages))
+			else {
+				dispatch(stopSubmit('loginForm', { showError: response.messages }))
+			}
 		})
 	}
 }
